@@ -13,11 +13,17 @@
 
   /* Colors */
   --primary: #639605;
+  --primary-hover: #67a925;
+  --red: 204, 56, 114;
+  --dark-error: #9f1f1f;
   --neutral: #ffffff;
   --background: #f4f4f4;
   --gray-100: #dbdbdb;
   --gray-200: #c9c9c9;
+  --gray-300: #b3b3b3;
+  --gray-400: #777777;
   --gray-600: #555555;
+  --gray-800: #333333;
 }
 body {
   background-color: var(--background);

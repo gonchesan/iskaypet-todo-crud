@@ -1,0 +1,18 @@
+@import '@/index.css';
+
+.btn__primary {
+  background-color: var(--primary);
+  color: var(--neutral);
+  padding: 12px 0px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--primary-hover);
+  }
+}

@@ -1,0 +1,32 @@
+@import '@/index.css';
+
+.card {
+  background-color: var(--neutral);
+  border-radius: 4px;
+  background-color: var(--neutral);
+  padding: 32px 24px;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.12);
+
+  .card__form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card__button {
+    margin-top: 32px;
+    background-color: var(--primary);
+    color: var(--neutral);
+    padding: 12px 0px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: var(--primary-hover);
+    }
+  }
+}

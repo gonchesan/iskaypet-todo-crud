@@ -1,0 +1,28 @@
+@import '@/index.css';
+
+.textfield_area {
+  .textfield_area__label {
+    display: flex;
+    flex-direction: column;
+    color: var(--gray-600);
+    gap: 4px;
+
+    .textfield_area__label--mandatory {
+      color: var(--dark-error);
+    }
+
+    .textfield_area__input {
+      font-family: 'Nunito', system-ui, Avenir, Helvetica, sans-serif;
+      color: black;
+      outline: none;
+      border: 1px solid var(--gray-200);
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 15px;
+      resize: none;
+      &::placeholder {
+        color: var(--gray-200);
+      }
+    }
+  }
+}
