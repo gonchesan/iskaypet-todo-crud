@@ -8,6 +8,9 @@
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
-    }
+    },
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "target": "es6"
   }
 }
