@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Nunito', system-ui, Avenir, Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-weight: 400;
+
+  /* Colors */
+  --primary: #639605;
+  --neutral: #ffffff;
+  --background: #f4f4f4;
+  --gray-100: #dbdbdb;
+  --gray-200: #c9c9c9;
+  --gray-600: #555555;
+}
+body {
+  background-color: var(--background);
+}

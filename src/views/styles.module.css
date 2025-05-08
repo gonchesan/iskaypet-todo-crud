@@ -1,0 +1,15 @@
+@import '@/index.css';
+
+.container {
+  padding: 40px 24px 0px;
+  display: flex;
+  gap: 16;
+  flex-direction: column;
+  height: 100%;
+
+  .title {
+    font-weight: 700;
+    font-size: 20;
+    color: var(--gray-600);
+  }
+}

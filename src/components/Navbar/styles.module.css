@@ -1,0 +1,60 @@
+@import '@/index.css';
+
+.navbar {
+  background-color: var(--neutral);
+  padding: 0px 24px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  display: flex;
+  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  user-select: none;
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .navbar__list {
+    list-style: none;
+    width: fit-content;
+    min-width: 100%;
+    display: flex;
+    gap: 0.5em;
+    color: var(--gray-600);
+  }
+  .navbar__item {
+    display: block;
+  }
+
+  .navbar__item--active {
+    display: block;
+    color: var(--primary);
+    /* border-bottom: 3px solid var(--primary); */
+    font-weight: 700;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--primary);
+      border-radius: 8px 8px 0px 0px;
+    }
+  }
+  .navbar__link {
+    font: inherit;
+    padding: 0.8em 1em;
+    background-color: transparent;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: inherit;
+    white-space: nowrap;
+  }
+}
