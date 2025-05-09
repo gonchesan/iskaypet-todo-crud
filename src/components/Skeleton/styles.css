@@ -1,0 +1,60 @@
+@import '@/index.css';
+
+.card {
+  padding: 24px;
+  border-radius: 4px;
+  background-color: var(--neutral);
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  transition: 0.3s;
+}
+.card__body {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 0.75rem;
+}
+.skeleton {
+  -webkit-animation: skeleton-loading 1s linear infinite alternate;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton-text {
+  width: 100%;
+  height: 0.7rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.skeleton-text__title {
+  width: 75%;
+}
+
+.skeleton-button {
+  height: 3rem;
+  width: 3.6rem;
+  border-radius: 99px;
+}
+
+@-webkit-keyframes skeleton-loading {
+  0% {
+    background-color: #c2cfd6;
+  }
+  100% {
+    background-color: #f0f3f5;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: #c2cfd6;
+  }
+  100% {
+    background-color: #f0f3f5;
+  }
+}

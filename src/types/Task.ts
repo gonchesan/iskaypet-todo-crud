@@ -1,7 +1,26 @@
-export interface Task {
-  userId: number;
-  id: number;
+import type { FormField } from './Form';
+
+export type Task = {
+  id?: number;
+  title: string | FormField;
+  description: string | FormField;
+  userId?: number;
+  completed?: boolean;
+};
+
+export type RawTask = {
+  id?: number;
   title: string;
   description: string;
-  completed: false;
-}
+  userId?: number;
+  completed?: boolean;
+};
+
+export type TaskContextType = {
+  userTasks: RawTask[];
+  isLoading: boolean;
+  error: null | unknown;
+  deleteTask: (id: number) => void;
+  addTask: (addTask: Pick<RawTask, 'title' | 'description'>) => void;
+  editTask: (editedTask: RawTask) => void;
+};

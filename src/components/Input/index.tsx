@@ -5,11 +5,13 @@ import styles from './styles.module.css';
 interface InputType extends React.ComponentProps<'input'> {
   label?: string;
   isMandatory?: boolean;
+  error?: string;
 }
 
 const Input: React.FC<InputType> = ({
   label = 'label',
   isMandatory = true,
+  error,
   ...props
 }) => {
   return (
@@ -23,6 +25,9 @@ const Input: React.FC<InputType> = ({
         </p>
         <input {...props} className={styles.textfield__input} />
       </label>
+      {error ? (
+        <span className={styles['textfield__helper-text']}>{error}</span>
+      ) : null}
     </div>
   );
 };

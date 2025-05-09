@@ -1,7 +1,7 @@
 import React from 'react';
 import WIPIcon from '@/assets/wip.svg?react';
 
-const EmptyState: React.FC<{ description: string }> = ({
+const EmptyState: React.FC<{ description?: string }> = ({
   description = '',
 }) => {
   return (

@@ -1,6 +1,7 @@
 @import '@/index.css';
 
 .textfield_area {
+  position: relative;
   .textfield_area__label {
     display: flex;
     flex-direction: column;
@@ -24,5 +25,12 @@
         color: var(--gray-200);
       }
     }
+  }
+  .textfield_area__helper-text {
+    color: var(--dark-error);
+    font-size: 11px;
+    position: absolute;
+    bottom: -16px;
+    left: 4px;
   }
 }

@@ -6,10 +6,14 @@ import React, {
   type ReactNode,
 } from 'react';
 
+type ModalConfirmArgs = {
+  closeModal: () => void;
+};
+
 type ModalProps = {
   title: string;
   children: ReactNode;
-  onConfirm?: () => void;
+  onConfirm?: (args: ModalConfirmArgs) => void;
   onCancel?: () => void;
 };
 
@@ -38,8 +42,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleConfirm = () => {
-    modalProps?.onConfirm?.();
-    closeModal();
+    if (typeof modalProps?.onConfirm === 'function') {
+      modalProps.onConfirm({ closeModal: () => closeModal() });
+    }
   };
 
   const handleCancel = () => {

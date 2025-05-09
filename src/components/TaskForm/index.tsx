@@ -2,35 +2,75 @@ import Input from '@/components/Input';
 import TextArea from '@/components/TextArea';
 
 import styles from './styles.module.css';
-import { useState, type ChangeEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type RefObject } from 'react';
 
-const TaskForm = ({ formValuesRef }) => {
-  const [newTask, setNewTask] = useState({
+import type { FormValues } from '@/types/Form';
+import type { Task } from '@/types/Task';
+import { normalize } from '@/utils/form';
+
+type TaskFormType = {
+  formValuesRef: RefObject<Task | null>;
+};
+
+const TaskForm: React.FC<TaskFormType> = ({ formValuesRef }) => {
+  const [newTask, setNewTask] = useState<FormValues>({
     title: { value: '', error: '' },
     description: { value: '', error: '' },
   });
 
+  useEffect(() => {
+    if (formValuesRef?.current) {
+      const { title, description } = formValuesRef.current;
+      setNewTask(() => {
+        const updatedForm: FormValues = {
+          title: normalize(title),
+          description: normalize(description),
+        };
+        const validatedForm = validateFieldForm(updatedForm);
+
+        return validatedForm;
+      });
+    }
+  }, []);
+
+  const validateFieldForm = (form: FormValues): FormValues => {
+    const errors: Partial<FormValues> = {};
+
+    if (!form.title.value.trim()) {
+      errors.title = { ...form.title, error: 'Este campo es obligatorio' };
+    }
+
+    if (!form.description.value.trim()) {
+      errors.description = {
+        ...form.description,
+        error: 'Este campo es obligatorio',
+      };
+    }
+
+    return {
+      ...form,
+      ...errors,
+    };
+  };
+
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
-    const { target } = event;
+    const { name, value } = event.target;
 
     setNewTask((prevValue) => {
-      formValuesRef.current = {
-        ...formValuesRef.current,
-        [target.name]: {
-          value: target.value,
-          error: '',
-        },
-      };
-
-      return {
+      const updatedForm = {
         ...prevValue,
-        [target.name]: {
-          value: target.value,
+        [name]: {
+          value,
           error: '',
         },
       };
+      const validatedForm = validateFieldForm(updatedForm);
+
+      formValuesRef.current = { ...formValuesRef?.current, ...validatedForm };
+
+      return validatedForm;
     });
   };
 
@@ -42,7 +82,7 @@ const TaskForm = ({ formValuesRef }) => {
         onChange={(event) => handleChange(event)}
         label='Nombre'
         placeholder='Nombre'
-        isMandatory={false}
+        error={newTask.title.error}
       />
       <TextArea
         name='description'
@@ -51,7 +91,7 @@ const TaskForm = ({ formValuesRef }) => {
         label='Descripción'
         placeholder='Descripción'
         rows={5}
-        isMandatory={false}
+        error={newTask.description.error}
       />
     </div>
   );
