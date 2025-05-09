@@ -1,0 +1,23 @@
+@import '@/index.css';
+
+.empty-card {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 260px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding-bottom: 32px;
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.12);
+
+  .empty-card__title {
+    font-size: 18px;
+    color: var(--gray-600);
+  }
+  .empty-card__description {
+    font-size: 16px;
+    color: var(--gray-800);
+  }
+}

@@ -1,4 +1,4 @@
-import type { FormField } from './Form';
+import type { FormField } from './form.types';
 
 export type Task = {
   id?: number;
@@ -23,4 +23,9 @@ export type TaskContextType = {
   deleteTask: (id: number) => void;
   addTask: (addTask: Pick<RawTask, 'title' | 'description'>) => void;
   editTask: (editedTask: RawTask) => void;
+  currentItems: RawTask[];
+  setCurrentItems: React.Dispatch<React.SetStateAction<RawTask[]>>;
+  currentPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  LIMIT: number;
 };

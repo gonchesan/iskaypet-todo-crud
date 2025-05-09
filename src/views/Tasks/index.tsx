@@ -1,15 +1,17 @@
 import List from '@/components/List';
-import { useModal } from '@/context/ModalContext';
 
 import React, { useRef } from 'react';
 import styles from './styles.module.css';
 
+import { useModal } from '@/hooks/useModal';
+import { useTasks } from '@/hooks/useTasks';
+
 import TaskForm from '@/components/TaskForm';
-import { useTasks } from '@/context/TaskContext';
 import Skeleton from '@/components/Skeleton';
+import Paginator from '@/components/Paginator';
 
 const TasksView: React.FC = () => {
-  const { userTasks, isLoading, addTask } = useTasks();
+  const { isLoading, addTask, currentItems } = useTasks();
 
   const formValuesRef = useRef<{
     title: { value: string; error: string };
@@ -45,12 +47,13 @@ const TasksView: React.FC = () => {
       .map((_, index) => <Skeleton key={index} />);
 
   return (
-    <>
-      <List data={userTasks} />
+    <section className={styles.container}>
+      <List data={currentItems} />
+      <Paginator />
       <button className={styles.btn__primary} onClick={handleOpen}>
         Añadir tarea
       </button>
-    </>
+    </section>
   );
 };
 

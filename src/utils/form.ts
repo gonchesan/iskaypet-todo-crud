@@ -1,4 +1,4 @@
-import type { FormField } from '@/types/Form';
+import type { FormField } from '@/types/form.types';
 
 export function isFormField(field: unknown): field is FormField {
   return typeof field === 'object' && field !== null && 'value' in field;

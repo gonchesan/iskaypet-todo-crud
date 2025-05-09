@@ -1,10 +1,5 @@
 import { Modal } from '@/components/Modal';
-import React, {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-} from 'react';
+import { createContext, useState, type ReactNode } from 'react';
 
 type ModalConfirmArgs = {
   closeModal: () => void;
@@ -22,13 +17,7 @@ type ModalContextType = {
   closeModal: () => void;
 };
 
-const ModalContext = createContext<ModalContextType | null>(null);
-
-export const useModal = () => {
-  const context = useContext(ModalContext);
-  if (!context) throw new Error('useModal must be used within a ModalProvider');
-  return context;
-};
+export const ModalContext = createContext<ModalContextType | null>(null);
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [modalProps, setModalProps] = useState<ModalProps | null>(null);

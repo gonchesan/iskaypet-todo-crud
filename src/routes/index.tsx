@@ -11,7 +11,7 @@ const Routing = () => {
 
   useEffect(() => {
     if (location === '/') {
-      setLocation('/profile');
+      setLocation('/tasks');
     }
   }, [location]);
 
@@ -25,7 +25,10 @@ const Routing = () => {
               route.component ? (
                 React.createElement(route.component)
               ) : (
-                <EmptyState />
+                <EmptyState
+                  title='Servicio no disponible'
+                  description='Este servicio aún no está disponible. Inténtelo más tarde.'
+                />
               )
             }
           ></Layout>

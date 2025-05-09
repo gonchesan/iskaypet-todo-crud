@@ -1,29 +1,20 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from 'react';
+import { createContext, useEffect, useState, type ReactNode } from 'react';
 
-import { getTasks } from '@/services/tasks';
 import useLocalStorage from '@/hooks/useLocalStorage';
+import { getTasks } from '@/services/tasks.service';
 
-import type { RawTask, TaskContextType } from '@/types/Task';
+import type { RawTask, TaskContextType } from '@/types/tasks.types';
 import { generateRandomId } from '@/utils/generateId';
 
-const TaskContext = createContext<TaskContextType | null>(null);
-
-export const useTasks = () => {
-  const context = useContext(TaskContext);
-  if (!context) throw new Error('useTasks must be used within a ModalProvider');
-  return context;
-};
+export const TaskContext = createContext<TaskContextType | null>(null);
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = useLocalStorage<RawTask[]>('user-tasks', []);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<null | unknown>(null);
+  const [currentItems, setCurrentItems] = useState<RawTask[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const LIMIT = 5;
 
   const getInitialTasks = async () => {
     try {
@@ -39,7 +30,6 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteTask = (id: number) => {
     const newArrTask = data.filter((task) => id !== task.id) as RawTask[];
-
     setData(newArrTask);
   };
 
@@ -66,8 +56,16 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    getInitialTasks();
+    if (!data.length) {
+      getInitialTasks();
+    }
   }, []);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * LIMIT;
+    const endIndex = startIndex + LIMIT;
+    setCurrentItems(data.slice(startIndex, endIndex));
+  }, [data, currentPage]);
 
   return (
     <TaskContext.Provider
@@ -78,6 +76,11 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
         deleteTask,
         addTask,
         editTask,
+        currentItems,
+        setCurrentItems,
+        currentPage,
+        setCurrentPage,
+        LIMIT,
       }}
     >
       {children}

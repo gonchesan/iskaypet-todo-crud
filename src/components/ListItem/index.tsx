@@ -3,13 +3,13 @@ import React, { useRef } from 'react';
 import styles from './styles.module.css';
 import TrashIcon from '@/assets/trash.svg?react';
 
-import { useModal } from '@/context/ModalContext';
-import { useTasks } from '@/context/TaskContext';
 import { isFormField } from '@/utils/form';
+import { useModal } from '@/hooks/useModal';
+import { useTasks } from '@/hooks/useTasks';
 
 import TaskForm from '@/components/TaskForm';
 
-import type { RawTask, Task } from '@/types/Task';
+import type { RawTask, Task } from '@/types/tasks.types';
 
 const ListItem: React.FC<{ todo: RawTask }> = ({ todo }) => {
   const { openModal } = useModal();

@@ -1,6 +1,7 @@
 @import '@/index.css';
 
 .card {
+  max-width: 75ch;
   background-color: var(--neutral);
   border-radius: 4px;
   background-color: var(--neutral);

@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+A simple to-do app designed to help you manage your tasks efficiently. After the
+initial load, the app retrieves and displays the first three to-dos from a
+public API, if you don't have any previously saved sessions (check your local
+storage). It offers full CRUD (Create, Read, Update, Delete) functionality for
+your personal tasks, utilizing local storage to retain data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To manage state and local storage seamlessly, the application implements custom
+hooks for local storage interaction and task management, along with their
+respective contexts for global state handling. Upon running the project, you
+will be automatically redirected to the "/tasks" route, which displays the main
+task list. While other sections are visible in the navigation, they are
+currently under development. A global modal component is also implemented,
+managed through a context with its own custom hook.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Here's how to get the Todo app up and running on your local machine.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Dependencies
+
+The project relies on the following core dependencies:
+
+- `react`: The fundamental library for building the user interface.
+- `react-dom`: Provides DOM-specific methods for React.
+- `wouter`: A minimalist routing library for React.
+
+### Installing
+
+1.  **Clone the repository:** Use Git to clone the project files from GitHub.
+
+    ```bash
+    git clone https://github.com/gonchesan/iskaypet-todo-crud.git
+    ```
+
+2.  **Navigate to the project directory:** Once the cloning is complete, move
+    into the project's main directory in your terminal.
+
+    ```bash
+    cd iskaypet-todo-crud
+    ```
+
+3.  **Install npm packages:** Install all the necessary dependencies listed in
+    the `package.json` file using npm.
+
+    ```bash
+    npm install
+    ```
+
+### Executing the program
+
+The default development server port has been changed to `8080`. Therefore, once
+the application is running, you will be able to access it at
+`https://localhost:8080` in your web browser. However, you must first start the
+development server using the following command:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Structure:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
 ```
+.
+├── src                     # Source files
+│   ├── assets              # Static assets like images, public files, etc.
+│   ├── components          # Global and reusable UI components
+│   ├── constants           # Globally used constant values
+│   ├── contexts            # Global state management contexts
+│   ├── hooks               # Reusable custom hooks used throughout the project
+│   ├── routes              # Route definitions for navigation using Wouter
+│   ├── types               # TypeScript type definitions for better code management
+│   ├── utils               # Utility and helper functions
+│   ├── views               # Application views (screens)
+│   ├── App.js              # Main application component where the primary route is defined
+│   ├── index.js            # Main entry point with MUI provider and global context providers
+│   ├── vite.config.ts      # Configuration for the Vite build tool
+│   └── ...                 # Other files
+└── ...
+```
+
+## Features:
+
+- **Initial Task Loading**: The primary view, "Task List," automatically fetches
+  and displays the first 3 todo items from a public dummy REST API upon loading.
+
+- **My Tasks Section**: You can manage your personal tasks in the "My Tasks"
+  section. This includes the ability to:
+  - **Add**: Create new todo items through the form available in the "Add Task"
+    view.
+  - **Delete**: Remove existing todo items from your list.
+- **Local Storage Persistence**: All actions performed on your personal tasks
+  (Add, Delete) are saved using the browser's local storage, ensuring that your
+  data persists across sessions.

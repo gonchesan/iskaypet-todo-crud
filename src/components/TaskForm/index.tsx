@@ -4,8 +4,8 @@ import TextArea from '@/components/TextArea';
 import styles from './styles.module.css';
 import { useEffect, useState, type ChangeEvent, type RefObject } from 'react';
 
-import type { FormValues } from '@/types/Form';
-import type { Task } from '@/types/Task';
+import type { FormValues } from '@/types/form.types';
+import type { Task } from '@/types/tasks.types';
 import { normalize } from '@/utils/form';
 
 type TaskFormType = {

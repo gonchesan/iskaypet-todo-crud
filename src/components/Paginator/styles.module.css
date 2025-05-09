@@ -1,0 +1,41 @@
+@import '@/index.css';
+
+.paginator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  .paginator__button {
+    border-radius: 99px;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    background-color: var(--neutral);
+    color: var(--primary);
+    font-weight: 700;
+    outline: none;
+    border: 2px solid var(--gray-200);
+
+    &:disabled {
+      background-color: var(--gray-200);
+      color: var(--gray-600);
+      opacity: 0.8;
+      cursor: initial;
+    }
+  }
+  .paginator__button--active {
+    border-radius: 99px;
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--neutral);
+    font-weight: 700;
+    outline: none;
+    border: 2px solid var(--gray-200);
+  }
+}
